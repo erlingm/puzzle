@@ -1,8 +1,13 @@
 # puzzle
-A timing puzzle sequential vs parallel for BigInteger multiplication (based on one of the puzzles by Dr. Heinz M. Kabutz)
+A timing puzzle sequential vs parallel for BigInteger multiplication
+_(based on one of the puzzles by Dr. Heinz M. Kabutz)_
 
 Simple Java project in IntelliJ, and using Java 16 for compilation.
 
+## The puzzle
+The puzzle is why running the calculation in parallel is not a factor smaller than the number of processors of the computer, compared to running it sequentally. _I do not know the answer._
+
+## Sample run
 On my computer:
 <pre>
 Processor	Intel(R) Xeon(R) W-1290P CPU @ 3.70GHz   3.70 GHz
@@ -10,46 +15,47 @@ Installed RAM	96,0 GB (95,9 GB usable)
 System type	64-bit operating system, x64-based processor
 </pre>
 ## Summary run times
-<pre>
+
 Java vendor version: AdoptOpenJDK-16.0.1+9
 
 Available processors: 20
 
-Upper limit  Iter   Factor    Seq. run time  Par. run time
+| Upper limit | Iter | Factor | Sequential<br>run time | Parallel<br>run time |
+| ----------- | ---- | ------ | ------------- | ------------- |
+|   200,000   |   1  |  35.36 |    7,285 ms   |     206 ms    |
+|   200,000   |   2  |  61.91 |    7,182 ms   |     116 ms    |
+|   200,000   |   3  |  64.55 |    7,165 ms   |     111 ms    |
+|   200,000   |   4  |  64.31 |    7,138 ms   |     111 ms    |
+|   200,000   |   5  |  64.51 |    7,161 ms   |     111 ms    |
+|   200,000   |   6  |  63.90 |    7,157 ms   |     112 ms    |
+|   200,000   |   7  |  62.61 |    7,138 ms   |     114 ms    |
+|   200,000   |   8  |  63.27 |    7,150 ms   |     113 ms    |
+|   200,000   |   9  |  62.66 |    7,143 ms   |     114 ms    |
+|   200,000   |  10  |  57.82 |    7,170 ms   |     124 ms    |
+| |
+|   500,000   |   1  |  92.25 |   48,341 ms   |     524 ms    |
+|   500,000   |   2  |  90.45 |   48,299 ms   |     534 ms    |
+|   500,000   |   3  |  77.67 |   48,311 ms   |     622 ms    |
+|   500,000   |   4  |  89.69 |   48,253 ms   |     538 ms    |
+|   500,000   |   5  |  90.71 |   48,256 ms   |     532 ms    |
+|   500,000   |   6  |  90.17 |   48,509 ms   |     538 ms    |
+|   500,000   |   7  |  90.47 |   48,490 ms   |     536 ms    |
+|   500,000   |   8  |  90.85 |   48,513 ms   |     534 ms    |
+|   500,000   |   9  |  89.15 |   48,500 ms   |     544 ms    |
+|   500,000   |  10  |  90.26 |   48,472 ms   |     537 ms    |
+|             |
+|  1,000,000  |   1  | 121.29 |  205,104 ms   |   1,691 ms    |
+|  1,000,000  |   2  | 118.57 |  204,298 ms   |   1,723 ms    |
+|  1,000,000  |   3  | 120.00 |  204,354 ms   |   1,703 ms    |
+|  1,000,000  |   4  | 119.35 |  204,094 ms   |   1,710 ms    |
+|  1,000,000  |   5  | 119.16 |  204,951 ms   |   1,720 ms    |
+|  1,000,000  |   6  | 119.41 |  205,379 ms   |   1,720 ms    |
+|  1,000,000  |   7  | 120.77 |  203,979 ms   |   1,689 ms    |
+|  1,000,000  |   8  | 119.40 |  204,764 ms   |   1,715 ms    |
+|  1,000,000  |   9  | 118.70 |  205,106 ms   |   1,728 ms    |
+|  1,000,000  |  10  | 118.83 |  205,105 ms   |   1,726 ms    |
 
-    200,000    1     35.36        7,28 ms          20 ms
-    200,000    2     61.91        7,18 ms          11 ms
-    200,000    3     64.55        7,16 ms          11 ms
-    200,000    4     64.31        7,13 ms          11 ms
-    200,000    5     64.51        7,16 ms          11 ms
-    200,000    6     63.90        7,15 ms          11 ms
-    200,000    7     62.61        7,13 ms          11 ms
-    200,000    8     63.27        7,15 ms          11 ms
-    200,000    9     62.66        7,14 ms          11 ms
-    200,000   10     57.82        7,17 ms          12 ms
-
-    500,000    1     92.25       48,34 ms          52 ms
-    500,000    2     90.45       48,29 ms          53 ms
-    500,000    3     77.67       48,31 ms          62 ms
-    500,000    4     89.69       48,25 ms          53 ms
-    500,000    5     90.71       48,25 ms          53 ms
-    500,000    6     90.17       48,50 ms          53 ms
-    500,000    7     90.47       48,49 ms          53 ms
-    500,000    8     90.85       48,51 ms          53 ms
-    500,000    9     89.15       48,50 ms          54 ms
-    500,000   10     90.26       48,47 ms          53 ms
-
-  1,000,000    1    121.29      205,10 ms        1,69 ms
-  1,000,000    2    118.57      204,29 ms        1,72 ms
-  1,000,000    3    120.00      204,35 ms        1,70 ms
-  1,000,000    4    119.35      204,09 ms        1,71 ms
-  1,000,000    5    119.16      204,95 ms        1,72 ms
-  1,000,000    6    119.41      205,37 ms        1,72 ms
-  1,000,000    7    120.77      203,97 ms        1,68 ms
-  1,000,000    8    119.40      204,76 ms        1,71 ms
-  1,000,000    9    118.70      205,10 ms        1,72 ms
-  1,000,000   10    118.83      205,10 ms        1,72 ms
-</pre>
+## Run details
 <pre>
 "C:\Program Files\AdoptOpenJDK\jdk-16.0.1.9-hotspot\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2021.1\lib\idea_rt.jar=62115:C:\Program Files\JetBrains\IntelliJ IDEA 2021.1\bin" -Dfile.encoding=UTF-8 -classpath F:\work\javaspecialists\puzzle\out\production\puzzle no.moldesoft.puzzle.Main
 Available processors: 20
