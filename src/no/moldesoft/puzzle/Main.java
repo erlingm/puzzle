@@ -3,7 +3,6 @@ package no.moldesoft.puzzle;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
@@ -24,8 +23,10 @@ public class Main {
     }
 
     private void runSeqParMulReps(List<Integer> limits) {
-        List<Result> results = new ArrayList<>();
-        limits.forEach(upperLimit -> IntStream.rangeClosed(1, 10).forEach(i -> results.add(puzzleRep(i, upperLimit))));
+        List<Result> results = limits.stream()
+                .flatMap(upperLimit -> IntStream.rangeClosed(1, 10)
+                        .mapToObj(i -> puzzleRep(i, upperLimit)))
+                .toList();
         System.out.printf("%11s %4s %9s%n", "Upper limit", "Iter", "Factor");
         results.forEach(result -> System.out.printf("%,11d %,4d %,9.2f%n", result.limit(), result.iteration(), result.factor()));
     }
